@@ -2,7 +2,8 @@ services:
   backend:
     build:
       context: ./backend
-    image: bobooo404/docker-backend:latest
+    image: bobooo404/docker_vaibhavnaik:backend
+    pull_policy: build
     container_name: docker-backend
     ports:
       - "5000:5000"
@@ -21,7 +22,8 @@ services:
   frontend:
     build:
       context: ./frontend
-    image: bobooo404/docker-frontend:latest
+    image: bobooo404/docker_vaibhavnaik:frontend
+    pull_policy: build
     container_name: docker-frontend
     ports:
       - "3000:3000"
