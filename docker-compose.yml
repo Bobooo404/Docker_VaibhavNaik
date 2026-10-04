@@ -1,0 +1,41 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    image: bobooo404/docker-backend:latest
+    container_name: docker-backend
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: "5000"
+    networks:
+      - docker-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+  frontend:
+    build:
+      context: ./frontend
+    image: bobooo404/docker-frontend:latest
+    container_name: docker-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: "3000"
+      BACKEND_URL: "http://backend:5000"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - docker-network
+    restart: unless-stopped
+
+networks:
+  docker-network:
+    name: docker-network
+    driver: bridge

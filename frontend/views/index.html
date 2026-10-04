@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <p class="badge">Express frontend &rarr; Flask backend</p>
+
+        <h1>Student Registration Form</h1>
+        <p class="subtitle">Submit the form and the Express server forwards it to the Flask backend over the Docker Compose network.</p>
+
+        <div id="message" class="message hidden"></div>
+
+        <form id="registration-form" novalidate>
+
+            <div class="field">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Vaibhav Naik" required>
+                <span class="error" id="name-error"></span>
+            </div>
+
+            <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="vaibhavnaik20@gmail.com" required>
+                <span class="error" id="email-error"></span>
+            </div>
+
+            <div class="field">
+                <label for="course">Course</label>
+                <input type="text" id="course" name="course" placeholder="Computer Engineering" required>
+                <span class="error" id="course-error"></span>
+            </div>
+
+            <button type="submit" id="submit-button">Submit</button>
+
+        </form>
+
+        <div class="records">
+            <h2>Stored by the Flask backend (<span id="record-count">0</span>)</h2>
+            <a href="/submissions" target="_blank" rel="noopener">Open as JSON</a>
+            <ul id="record-list"></ul>
+        </div>
+
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>
